@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo Stop</title>
+    <!-- Adicionei os links para seus CSS -->
+     <link rel="stylesheet" href="stop.css">
+</head>
+
+<body>
+    <header>
+        <h1>JOGUE STOP</h1>
+    </header>
+
+    <div id="letra-sortida">
+        <!-- Letra sorteada para o jogo -->
+        <h1>A Letra do Stop é...</h1>
+        <p id="letra">A</p>
+        <!-- Botão para sortear uma letra -->
+        <button onclick="sortearLetra()">Sortear Letra</button>
+    </div>
+
+    <main>
+
+        <div id="respostas">
+            <!-- Campos de entrada para as respostas do jogador -->
+            <h2>Respostas</h2>
+
+            <h3>Nome:</h3>
+            <input type="text" id="resposta-nome" placeholder="Coloque sua resposta aqui">
+
+            <h3>Cep:</h3>
+            <input type="text" id="resposta-cep" placeholder="Coloque sua resposta aqui">
+
+            <h3>Comida:</h3>
+            <input type="text" id="resposta-comida" placeholder="Coloque sua resposta aqui">
+
+            <h3>MSÉ:</h3>
+            <input type="text" id="resposta-msé" placeholder="Coloque sua resposta aqui">
+
+            <h3>MNÉ:</h3>
+            <input type="text" id="resposta-mné" placeholder="Coloque sua resposta aqui">
+
+            <h3>Marca:</h3>
+            <input type="text" id="resposta-marca" placeholder="Coloque sua resposta aqui">
+
+            <h3>Cor:</h3>
+            <input type="text" id="resposta-cor" placeholder="Coloque sua resposta aqui">
+            
+        </div>
+
+        <!-- Botão para verificar as respostas -->
+        <button id="verificar" onclick="verificarRespostas()">Verificar</button>
+
+        <div id="resultado">
+            <!-- Resultado do jogo após a verificação -->
+            <h2>Resultado</h2>
+            <p id="resultado-nome"></p>
+            <p id="resultado-cep"></p>
+            <p id="resultado-comida"></p>
+            <p id="resultado-msé"></p>
+            <p id="resultado-mné"></p>
+            <p id="resultado-marca"></p>
+            <p id="resultado-cor"></p>
+            
+        </div>
+    </main>
+
+    <!-- Parte do JS -->
+    <script>
+        var qtdSorteios = 5; //Variável da quantidade de sorteios
+        var sorteiosRealizados = 0;//Variável dos sorteios  realizados
+        var TimeoutID; // Variável para armazenar o ID do intervalo
+
+        // Função para sortear uma letra aleatória
+        function sortearLetra() {
+        const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // Variável para armazenar as letras que vão ser sorteadas
+        const letraSorteada = letras[Math.floor(Math.random() * letras.length)]; //Operação da letra que vai ser sorteada 
+        document.getElementById('letra').textContent = letraSorteada; //Mostrar letra
+    
+        sorteiosRealizados++;
+        //Função de repetição para o sorteio
+
+         if (sorteiosRealizados >= qtdSorteios) {
+            //Condição para se sorteiosRealizados for maior que qtdSorteios executar uma ação
+        clearTimeout(TimeoutID);
+        //Com a condição if anterior ação será executada e o sorteio não irá ser realizado
+        }
+    }
+
+        // Função para iniciar o sorteio
+        function iniciarSorteio() {
+        sorteiosRealizados = 0; // Reinicia o contador de sorteios
+        TimeoutID = setTimeout(sortearLetra, 1000); // Inicia o intervalo
+    }
+
+        // Adicionar um ouvinte de eventos para o botão
+        document.getElementById('botaoEscolherLetra').addEventListener('click', iniciarSorteio);
+
+
+        
+    </script>
+</body>
+
+</html>
